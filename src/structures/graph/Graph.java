@@ -159,7 +159,7 @@ public class Graph {
 					if(visita[j] == -1){//se nao foi visitado
 						parent[j] = vertice.getVertex(j); //cria uma nova raiz de aborescencia
 						
-						DFSbridgesRecursive(graph, parent[j]);
+						DFSbridgesRecursive(graph, vertice.getVertex(j));
 					}
 				}
 			}
