@@ -3,19 +3,19 @@ import java.util.Iterator;
 import java.util.Vector;
 
 import structures.graph.*;
+import structures.graph.Graph.Edge;
 
 public class DSF {
-    static final int numVertex=4;
     
-    static String visita[], low[], parent[];
+    static int visita[], low[], parent[];
 
     private void DFSbridges(Graph graph){
-        String vertice;
+        int vertice;
         
         for (int i=0; i<graph.numVertex(); i++) {
-			visita[i].equals("0");
+			visita[i] = -1;
             for (int j=0; j<graph.numVertex(); j++){
-                if(visita[j].equals("0")){//se nao foi visitado
+                if(visita[j] == -1){//se nao foi visitado
                     parent[j] = vertice; //cria uma nova raiz de aborescencia
                     DFSbridgesRecursive(graph, vertice);
                 }
@@ -23,12 +23,12 @@ public class DSF {
 		}
     }
 
-    private void DFSbridgesRecursive(Graph graph, String vertice) {
+    private void DFSbridgesRecursive(Graph graph, int vertice) {
         if(!graph.listaAdjVazia(vertice)) {
             Edge aresta = graph.primeiroListaAdj(vertice);
             while(aresta!=null){
-                String a = aresta.v2();
-                if (visita[a].equals("0")){ //se adj nao foi visitado
+                int a = aresta.v2();
+                if (visita[a] == -1){ //se adj nao foi visitado
                     parent[a] = vertice;
 
                     DFSbridgesRecursive(graph, a);
