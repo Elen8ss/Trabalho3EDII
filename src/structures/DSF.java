@@ -13,9 +13,9 @@ public class DSF {
         String vertice;
         
         for (int i=0; i<graph.numVertex(); i++) {
-			visita[i].equals("branco");
+			visita[i].equals("0");
             for (int j=0; j<graph.numVertex(); j++){
-                if(visita[j].equals("branco")){//se nao foi visitado
+                if(visita[j].equals("0")){//se nao foi visitado
                     parent[j] = vertice; //cria uma nova raiz de aborescencia
                     DFSbridgesRecursive(graph, vertice);
                 }
@@ -28,7 +28,7 @@ public class DSF {
             Edge aresta = graph.primeiroListaAdj(vertice);
             while(aresta!=null){
                 String a = aresta.v2();
-                if (visita[a].equals("branco")){ //se adj nao foi visitado
+                if (visita[a].equals("0")){ //se adj nao foi visitado
                     parent[a] = vertice;
 
                     DFSbridgesRecursive(graph, a);
