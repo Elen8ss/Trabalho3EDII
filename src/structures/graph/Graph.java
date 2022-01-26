@@ -6,10 +6,12 @@ public class Graph {
 	private List<Cell> adj[ ];
 	private int numVertex;
 	private Vertices vertices;
+	private boolean isWeighted;
 	
-	public Graph (int numVertex) {
+	public Graph (int numVertex, boolean isWeighted) {
 	    this.adj = new List [numVertex]; 
 		this.numVertex = numVertex;
+		this.isWeighted = isWeighted;
 		vertices = new Vertices(numVertex);
 
 	    for (int i = 0; i < this.numVertex; i ++) 
@@ -63,17 +65,19 @@ public class Graph {
 	}
 	
 	public void insereAresta (String v1, String v2, float weight) {
-		vertices.verticeInsert(v1);
-		vertices.verticeInsert(v2);
-		Cell item = new Cell (v2, weight);
-		int index = vertices.vertexIndex(v1);
-		if (index != -1)
-			this.adj[index].put (item);
-		
-		item = new Cell (v1, weight);
-		index = vertices.vertexIndex(v2);
-		if (index != -1)
-			this.adj[index].put (item);
+		if (!v1.equals(v2)) {
+			vertices.verticeInsert(v1);
+			vertices.verticeInsert(v2);
+			Cell item = new Cell (v2, weight);
+			int index = vertices.vertexIndex(v1);
+			if (index != -1)
+				this.adj[index].put (item);
+			
+			item = new Cell (v1, weight);
+			index = vertices.vertexIndex(v2);
+			if (index != -1)
+				this.adj[index].put (item);	
+		}
 	}
 
 	public boolean existeAresta (String v1, String v2) {
@@ -92,8 +96,6 @@ public class Graph {
 	}
 
 	public Edge primeiroListaAdj (String v) {
-	    // Retorna a primeira aresta que o vértice v participa ou
-	    // null se a lista de adjacência de v for vazia
 		int index = vertices.vertexIndex(v);
 		if (index != -1) {
 			Cell item = (Cell) this.adj[index].listFirst();
@@ -104,8 +106,6 @@ public class Graph {
 	}
 
 	public Edge proxAdj (String v) {
-	    // Retorna a próxima aresta que o vértice v participa ou
-	    // null se a lista de adjacência de v estiver no fim
 		int index = vertices.vertexIndex(v);
 		if (index != -1) {
 			Cell item = (Cell) this.adj[index].listNext();
@@ -128,17 +128,33 @@ public class Graph {
 
 	public void print ( ) {
 	    for (int i = 0; i < this.numVertex; i ++) {
-	        System.out.println ("Vertice " + i + " : ");
+	        System.out.println ("Vertice " + (i+1) + " : ");
 	        Cell item = (Cell) this.adj[i].listFirst();
 	        
 	        while (item != null) {
-	            System.out.println (vertices.getVertex(i)+" - " + item.vertex + " ( " +item.weight+ " )");
+	            if (isWeighted) {
+	            	System.out.println (vertices.getVertex(i)+" - " + item.vertex + " ( " +item.weight+ " )");	            	
+	            } else {
+	            	System.out.println(vertices.getVertex(i)+" - " + item.vertex);
+	            }
 	            item = (Cell) this.adj[i].listNext();
 	        }
 	    }
+	    System.out.println("\nNúmero de vértices: "+ this.numVertex);
+	    System.out.println("Número de arestas: "+ getNumEdges());
 	}
 
-	public int numVertex ( ) {
+	public int getNumVertex ( ) {
 	    return this.numVertex;
 	}
+	
+	public int getNumEdges() {
+		int cont = 0;
+		for (int i = 0; i < this.numVertex; i++) {
+			cont += this.adj[i].numElements();
+		}
+		return cont;
+	}
+	
+	
 }

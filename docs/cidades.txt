@@ -1,0 +1,7 @@
+7
+Sao-Luis Fortaleza 200
+Sao-Luis Belem 300
+Fortaleza Teresina 90
+Belem Manaus 200
+Sao-Luis Sao-Paulo 500
+Sao-Paulo Rio-de-janeiro 60

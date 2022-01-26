@@ -23,36 +23,6 @@ public class List<E> {
         }
     }
     
-    /*public void putInOrder(E value) {
-    	Node<K, E> prev = null;
-    	Node<K, E> data = first;
-    	
-        while (data != null && key.compareTo(data.getKey()) > 0){
-        	prev = data;
-        	data = data.getNext();
-        	
-        }
-        
-        if (data != null && key.compareTo(data.getKey()) == 0) {
-        	data.setValue(value);
-        	return;
-        }
-        
-        if (prev != null) {
-        	Node<K, E> newList = new Node<K, E>(key, value, data);
-
-            prev.setNext(newList);
-            if (newList.getNext() == null) {
-            	last = newList;            	
-            }
-        } else {            	
-        	first = new Node<K, E>(key, value, data);
-            if (first.getNext() == null) {
-            	last = first;
-            }
-    	}
-    }*/
-    
     public E delete (E value){
         //E value = null;
 
@@ -129,5 +99,15 @@ public class List<E> {
     	}
     	return false;
     }
-
+    
+    public int numElements() {
+    	Node<E> data = first;
+    	int cont = 0;
+    	
+        while(data != null){
+        	cont++;
+            data = data.getNext();
+        }
+        return cont;
+    }
 }
