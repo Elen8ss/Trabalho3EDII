@@ -10,6 +10,6 @@ public class Main {
 		g.insereAresta(1, 5, 0);
 		g.print();
 
-		g.DFSbridgesRecursive(g, 0);
+		
 	}
 }
