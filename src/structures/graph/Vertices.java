@@ -22,9 +22,9 @@ public class Vertices {
 		return false;
 	}
 	
-	public int vertexIndex(int v) {
+	public int vertexIndex(int v1) {
 		for (int i = 0; i < index; i++) {
-			if (this.vertices[i] == v)
+			if (this.vertices[i] == v1)
 				return i;
 		}
 		return -1; 

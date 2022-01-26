@@ -1,6 +1,4 @@
-package structures;
-import java.util.Iterator;
-import java.util.Vector;
+/*package structures;
 
 import structures.graph.*;
 import structures.graph.Graph.Edge;
@@ -10,7 +8,7 @@ public class DSF {
     static int visita[], low[], parent[];
 
     private void DFSbridges(Graph graph){
-        int vertice;
+        int vertice = new int[numVertex];
         
         for (int i=0; i<graph.numVertex(); i++) {
 			visita[i] = -1;
@@ -47,4 +45,4 @@ public class DSF {
             }
         }
     }
-}
+}*/
